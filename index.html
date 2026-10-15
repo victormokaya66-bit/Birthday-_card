@@ -8,46 +8,41 @@
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
 body{margin:0;background:#0f0510;display:flex;justify-content:center;align-items:center;min-height:100vh}
-#stage{position:relative;width:400px;height:760px;background:radial-gradient(circle at center,#3a163a,#0f0510);overflow:hidden;border-radius:28px;box-shadow:0 25px 60px rgba(0,0,0,.6)}
-#bow{position:absolute;left:20px;top:50%;font-size:54px}
-#arrow{position:absolute;left:90px;top:51%;font-size:32px;z-index:10}
-#photo-wrap{position:absolute;left:50%;top:36%;transform:translate(-50%,-50%);opacity:0;width:195px;height:195px;border-radius:50%;border:5px solid #fff;overflow:hidden;box-shadow:0 0 40px #ff8fbf}
+#stage{position:relative;width:400px;height:800px;background:radial-gradient(#3a163a,#0f0510);overflow:hidden;border-radius:28px}
+#bow{position:absolute;left:22px;top:50%;font-size:56px}#arrow{position:absolute;left:92px;top:51%;font-size:34px;z-index:10}
+#photo-wrap{position:absolute;left:50%;top:34%;transform:translate(-50%,-50%);opacity:0;width:200px;height:200px;border-radius:50%;border:5px solid #fff;overflow:hidden;box-shadow:0 0 40px #ff8fbf}
 #photo-wrap img{width:100%;height:100%;object-fit:cover}
-#cake-wrap{position:absolute;left:50%;top:65%;transform:translate(-50%,-50%);opacity:0}
-.cake{width:135px;height:55px;background:#ff9eb8;border:4px solid #fff;border-radius:16px;margin:0 auto}
-.cake.top{width:90px;height:44px;background:#ffb9cc;margin-bottom:-10px}
-#happy{position:absolute;top:79%;width:100%;text-align:center;font-family:'Great Vibes',cursive;font-size:50px;color:#fff5c0;opacity:0;text-shadow:0 0 20px #ff8fbf;line-height:1}
-#tapBtn{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:20;background:#ff3f8a;color:#fff;border:none;padding:18px 36px;border-radius:40px;font-size:20px;font-weight:900;box-shadow:0 0 30px #ff3f8a;animation:pulse 1.4s infinite}
+#cake-wrap{position:absolute;left:50%;top:63%;transform:translate(-50%,-50%);opacity:0}.cake{width:140px;height:56px;background:#ff9eb8;border:4px solid #fff;border-radius:16px;margin:0 auto}.cake.top{width:92px;height:46px;background:#ffb9cc;margin-bottom:-10px}
+#happy{position:absolute;top:77%;width:100%;text-align:center;font-family:'Great Vibes',cursive;font-size:52px;color:#fff5c0;opacity:0;text-shadow:0 0 20px #ff8fbf;line-height:1}
+#tapBtn{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:30;background:linear-gradient(#ff3f8a,#ff0066);color:#fff;border:none;padding:20px 42px;border-radius:50px;font-size:22px;font-weight:900;box-shadow:0 0 40px #ff3f8a;animation:pulse 1.3s infinite}
 @keyframes pulse{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.08)}}
-.float{position:absolute;color:#ff8fb0;pointer-events:none}
-@keyframes up{from{transform:translateY(800px)}to{transform:translateY(-100px)}}
+.float{position:absolute;color:#ff8fb0}@keyframes up{from{transform:translateY(850px)}to{transform:translateY(-150px)}}
 </style>
 </head>
 <body>
 <div id="stage">
 <button id="tapBtn">💖 TAP TO START 💖</button>
 <div id="bow">🏹</div><div id="arrow">💗</div>
-<div id="photo-wrap"><img src="https://i.ibb.co/placeholder.jpg" id="pic"></div>
+<div id="photo-wrap"><img src="dorothy.jpg"></div>
 <div id="cake-wrap"><div class="cake top"></div><div class="cake"></div></div>
 <div id="happy">Happy Birthday<br>Dorothy</div>
-<audio id="music" loop><source src="https://cdn.pixabay.com/download/audio/2022/03/24/audio_7e7f83b2e1.mp3" type="audio/mpeg"></audio>
+<audio id="music" loop src="harmonize.mp3"></audio>
 </div>
 <script>
-const btn=document.getElementById('tapBtn');
+btn=document.getElementById('tapBtn');
 btn.onclick=()=>{
  btn.style.display='none';
- gsap.to('#bow',{scaleX:1.5,duration:0.25,yoyo:true,repeat:1});
- gsap.to('#arrow',{x:160,y:-30,duration:0.9,ease:'power2.out',onComplete:show});
+ gsap.to('#bow',{scaleX:1.6,duration:0.25,yoyo:true,repeat:1});
+ gsap.to('#arrow',{x:170,y:-40,duration:0.9,onComplete:show});
  document.getElementById('music').play();
 };
 function show(){
- gsap.to('#arrow',{scale:3,opacity:0,duration:0.5});
- gsap.to('#photo-wrap',{opacity:1,scale:1,duration:1.2,ease:'back.out(1.7)',delay:0.2});
- gsap.to('#cake-wrap',{opacity:1,scale:1,duration:1.2,ease:'back.out(1.7)',delay:0.4});
- gsap.to('#happy',{opacity:1,y:-10,duration:1.5,delay:1});
- for(let i=0;i<35;i++){let d=document.createElement('div');d.className='float';d.innerHTML='💗';d.style.left=Math.random()*400+'px';d.style.top='800px';d.style.fontSize=12+Math.random()*24+'px';d.style.animation=`up ${3+Math.random()*4}s linear ${Math.random()}s infinite`;document.getElementById('stage').appendChild(d);}
+ gsap.to('#arrow',{scale:3.8,opacity:0,duration:0.5});
+ gsap.to('#photo-wrap',{opacity:1,scale:1,duration:1.3,ease:'back.out(1.8)',delay:0.15});
+ gsap.to('#cake-wrap',{opacity:1,scale:1,duration:1.2,ease:'back.out(1.8)',delay:0.35});
+ gsap.to('#happy',{opacity:1,y:-10,duration:1.6,delay:0.9});
+ for(let i=0;i<40;i++){let d=document.createElement('div');d.className='float';d.innerHTML='💗';d.style.left=Math.random()*400+'px';d.style.top='850px';d.style.fontSize=(14+Math.random()*26)+'px';d.style.animation=`up ${3+Math.random()*4}s linear ${Math.random()*1.5}s infinite`;document.getElementById('stage').appendChild(d);}
 }
-document.getElementById('pic').src = "dorothy.jpg";
 </script>
 </body>
 </html>
